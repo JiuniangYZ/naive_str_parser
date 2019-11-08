@@ -23,7 +23,7 @@ pas.yy = { //可以通过给yy属性赋值来注入环境
 let a = "simple_add=>{{1+3+4}}ternery=>{{1>0?\"true\":\"false\"}}func_call=>{{fu(b)}}"
 k = /(?<=\{\{)(.*?)(?=\}\})/g
 console.log(a.replace(k, (str) => { return pas.parse(str) })
-//simpl
+//simple_add=>{{8}}ternery=>{{true}}func_call=>{{4}}
 ```
 ### 支持的表达式种类 
 1. 数字,字符串字面量
