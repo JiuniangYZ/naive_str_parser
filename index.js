@@ -1,6 +1,4 @@
-require("jison")
 let pas = require("./three.js").parser
-
 
 pas.yy = {
   a: 1,

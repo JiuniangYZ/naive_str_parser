@@ -72,12 +72,12 @@
   }
 */
 var three = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,5],$V1=[1,6],$V2=[1,7],$V3=[1,8],$V4=[1,10],$V5=[1,11],$V6=[1,12],$V7=[1,13],$V8=[1,14],$V9=[1,15],$Va=[1,16],$Vb=[1,17],$Vc=[5,8,9,11,12,13,14,15,16,17,18],$Vd=[5,8,9,11,12,13],$Ve=[5,8,9,11,12,13,14,15],$Vf=[5,8,9,11,12,13,14,15,16,17];
-var parser = {trace: function trace () { },
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,9],$V1=[1,5],$V2=[1,6],$V3=[1,8],$V4=[1,11],$V5=[1,12],$V6=[1,13],$V7=[1,14],$V8=[1,15],$V9=[1,16],$Va=[1,17],$Vb=[1,18],$Vc=[5,8,9,14,16,17,18,19,20,21,22,23],$Vd=[5,8,9,14,16,17,18],$Ve=[5,8,9,14,16,17,18,19,20],$Vf=[5,8,9,14,16,17,18,19,20,21,22],$Vg=[14,16];
+var parser = {trace: function trace() { },
 yy: {},
-symbols_: {"error":2,"all":3,"stmt":4,"EOF":5,"bexp":6,"exp":7,"?":8,":":9,"(":10,")":11,"+":12,"-":13,"*":14,"/":15,">":16,"<":17,"EQUAL":18,"STRING":19,"NAME":20,"NUMBER":21,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",8:"?",9:":",10:"(",11:")",12:"+",13:"-",14:"*",15:"/",16:">",17:"<",18:"EQUAL",19:"STRING",20:"NAME",21:"NUMBER"},
-productions_: [0,[3,2],[4,1],[4,1],[6,5],[7,3],[7,3],[7,3],[7,3],[7,3],[7,3],[7,3],[7,3],[7,3],[7,1],[7,4],[7,1],[7,1]],
+symbols_: {"error":2,"all":3,"stmt":4,"EOF":5,"bexp":6,"exp":7,"?":8,":":9,"func_call":10,"NAME":11,"(":12,"args":13,")":14,"pargs":15,",":16,"+":17,"-":18,"*":19,"/":20,">":21,"<":22,"EQUAL":23,"STRING":24,"NUMBER":25,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",8:"?",9:":",11:"NAME",12:"(",14:")",16:",",17:"+",18:"-",19:"*",20:"/",21:">",22:"<",23:"EQUAL",24:"STRING",25:"NUMBER"},
+productions_: [0,[3,2],[4,1],[4,1],[6,5],[10,4],[13,0],[13,1],[15,1],[15,3],[7,3],[7,3],[7,3],[7,3],[7,3],[7,3],[7,3],[7,3],[7,3],[7,1],[7,1],[7,1],[7,1]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -95,47 +95,62 @@ break;
 case 4:
 this.$ = $$[$0-4]?$$[$0-2]:$$[$0];
 break;
-case 5: case 6:
-this.$ = $$[$0-1];
+case 5:
+ this.$ = yy[$$[$0-3]](...$$[$0-1]); 
+break;
+case 6:
+ this.$ =[];console.log(this.$); 
 break;
 case 7:
-this.$ = $$[$0-2]+$$[$0];
+ this.$ = yy.slicer($$[$0]);console.log(this.$); 
 break;
 case 8:
-this.$ = $$[$0-2]-$$[$0];
+ this.$ = {type:"_args", left:null, right:$$[$0]}; 
 break;
 case 9:
-this.$ = $$[$0-2]*$$[$0];
+ this.$ = {type:"_args", left: $$[$0-2], right:$$[$0]}; 
 break;
-case 10:
-this.$ = $$[$0-2]/$$[$0];
-break;
-case 11:
-this.$ = !!($$[$0-2]>$$[$0]);
+case 10: case 11:
+this.$ = $$[$0-1];
 break;
 case 12:
-this.$ = !!($$[$0-2]<$$[$0]);
+this.$ = $$[$0-2]+$$[$0];
 break;
 case 13:
-this.$ = ($$[$0-2] == $$[$0]);
+this.$ = $$[$0-2]-$$[$0];
 break;
 case 14:
- this.$ = yytext.slice(1,yytext.length-1);
+this.$ = $$[$0-2]*$$[$0];
 break;
 case 15:
- this.$ = yy[$$[$0-3]]($$[$0-1]); 
+this.$ = $$[$0-2]/$$[$0];
 break;
 case 16:
-this.$ = Number(yytext);
+this.$ = !!($$[$0-2]>$$[$0]);
 break;
 case 17:
+this.$ = !!($$[$0-2]<$$[$0]);
+break;
+case 18:
+this.$ = ($$[$0-2] == $$[$0]);
+break;
+case 19:
+ this.$ = yytext.slice(1,yytext.length-1);
+break;
+case 20:
+ this.$ = $$[$0]; 
+break;
+case 21:
+this.$ = Number(yytext);
+break;
+case 22:
 this.$ = yy[yytext] || "null";
 break;
 }
 },
-table: [{3:1,4:2,6:3,7:4,10:$V0,19:$V1,20:$V2,21:$V3},{1:[3]},{5:[1,9]},{5:[2,2]},{5:[2,3],8:$V4,12:$V5,13:$V6,14:$V7,15:$V8,16:$V9,17:$Va,18:$Vb},{6:19,7:18,10:$V0,19:$V1,20:$V2,21:$V3},o($Vc,[2,14]),o($Vc,[2,17],{10:[1,20]}),o($Vc,[2,16]),{1:[2,1]},{7:21,10:$V0,19:$V1,20:$V2,21:$V3},{7:22,10:$V0,19:$V1,20:$V2,21:$V3},{7:23,10:$V0,19:$V1,20:$V2,21:$V3},{7:24,10:$V0,19:$V1,20:$V2,21:$V3},{7:25,10:$V0,19:$V1,20:$V2,21:$V3},{7:26,10:$V0,19:$V1,20:$V2,21:$V3},{7:27,10:$V0,19:$V1,20:$V2,21:$V3},{7:28,10:$V0,19:$V1,20:$V2,21:$V3},{8:$V4,11:[1,29],12:$V5,13:$V6,14:$V7,15:$V8,16:$V9,17:$Va,18:$Vb},{11:[1,30]},{7:31,10:$V0,19:$V1,20:$V2,21:$V3},{9:[1,32],12:$V5,13:$V6,14:$V7,15:$V8,16:$V9,17:$Va,18:$Vb},o($Vd,[2,7],{14:$V7,15:$V8,16:$V9,17:$Va,18:$Vb}),o($Vd,[2,8],{14:$V7,15:$V8,16:$V9,17:$Va,18:$Vb}),o($Ve,[2,9],{16:$V9,17:$Va,18:$Vb}),o($Ve,[2,10],{16:$V9,17:$Va,18:$Vb}),o($Vf,[2,11],{18:$Vb}),o($Vf,[2,12],{18:$Vb}),o($Vc,[2,13]),o($Vc,[2,5]),o($Vc,[2,6]),{11:[1,33],12:$V5,13:$V6,14:$V7,15:$V8,16:$V9,17:$Va,18:$Vb},{7:34,10:$V0,19:$V1,20:$V2,21:$V3},o($Vc,[2,15]),o([5,11],[2,4],{12:$V5,13:$V6,14:$V7,15:$V8,16:$V9,17:$Va,18:$Vb})],
-defaultActions: {3:[2,2],9:[2,1]},
-parseError: function parseError (str, hash) {
+table: [{3:1,4:2,6:3,7:4,10:7,11:$V0,12:$V1,24:$V2,25:$V3},{1:[3]},{5:[1,10]},{5:[2,2]},{5:[2,3],8:$V4,17:$V5,18:$V6,19:$V7,20:$V8,21:$V9,22:$Va,23:$Vb},{6:20,7:19,10:7,11:$V0,12:$V1,24:$V2,25:$V3},o($Vc,[2,19]),o($Vc,[2,20]),o($Vc,[2,21]),o($Vc,[2,22],{12:[1,21]}),{1:[2,1]},{7:22,10:7,11:$V0,12:$V1,24:$V2,25:$V3},{7:23,10:7,11:$V0,12:$V1,24:$V2,25:$V3},{7:24,10:7,11:$V0,12:$V1,24:$V2,25:$V3},{7:25,10:7,11:$V0,12:$V1,24:$V2,25:$V3},{7:26,10:7,11:$V0,12:$V1,24:$V2,25:$V3},{7:27,10:7,11:$V0,12:$V1,24:$V2,25:$V3},{7:28,10:7,11:$V0,12:$V1,24:$V2,25:$V3},{7:29,10:7,11:$V0,12:$V1,24:$V2,25:$V3},{8:$V4,14:[1,30],17:$V5,18:$V6,19:$V7,20:$V8,21:$V9,22:$Va,23:$Vb},{14:[1,31]},{7:34,10:7,11:$V0,12:$V1,13:32,14:[2,6],15:33,24:$V2,25:$V3},{9:[1,35],17:$V5,18:$V6,19:$V7,20:$V8,21:$V9,22:$Va,23:$Vb},o($Vd,[2,12],{19:$V7,20:$V8,21:$V9,22:$Va,23:$Vb}),o($Vd,[2,13],{19:$V7,20:$V8,21:$V9,22:$Va,23:$Vb}),o($Ve,[2,14],{21:$V9,22:$Va,23:$Vb}),o($Ve,[2,15],{21:$V9,22:$Va,23:$Vb}),o($Vf,[2,16],{23:$Vb}),o($Vf,[2,17],{23:$Vb}),o($Vc,[2,18]),o($Vc,[2,10]),o($Vc,[2,11]),{14:[1,36]},{14:[2,7],16:[1,37]},o($Vg,[2,8],{17:$V5,18:$V6,19:$V7,20:$V8,21:$V9,22:$Va,23:$Vb}),{7:38,10:7,11:$V0,12:$V1,24:$V2,25:$V3},o($Vc,[2,5]),{7:39,10:7,11:$V0,12:$V1,24:$V2,25:$V3},o([5,14],[2,4],{17:$V5,18:$V6,19:$V7,20:$V8,21:$V9,22:$Va,23:$Vb}),o($Vg,[2,9],{17:$V5,18:$V6,19:$V7,20:$V8,21:$V9,22:$Va,23:$Vb})],
+defaultActions: {3:[2,2],10:[2,1]},
+parseError: function parseError(str, hash) {
     if (hash.recoverable) {
         this.trace(str);
     } else {
@@ -423,7 +438,7 @@ showPosition:function () {
     },
 
 // test the lexed token: return FALSE when not a match, otherwise return token
-test_match:function(match, indexed_rule) {
+test_match:function (match, indexed_rule) {
         var token,
             lines,
             backup;
@@ -553,7 +568,7 @@ next:function () {
     },
 
 // return next match that has a token
-lex:function lex () {
+lex:function lex() {
         var r = this.next();
         if (r) {
             return r;
@@ -563,12 +578,12 @@ lex:function lex () {
     },
 
 // activates a new lexer condition state (pushes the new lexer condition state onto the condition stack)
-begin:function begin (condition) {
+begin:function begin(condition) {
         this.conditionStack.push(condition);
     },
 
 // pop the previously active lexer condition state off the condition stack
-popState:function popState () {
+popState:function popState() {
         var n = this.conditionStack.length - 1;
         if (n > 0) {
             return this.conditionStack.pop();
@@ -578,7 +593,7 @@ popState:function popState () {
     },
 
 // produce the lexer rule set which is active for the currently active lexer condition state
-_currentRules:function _currentRules () {
+_currentRules:function _currentRules() {
         if (this.conditionStack.length && this.conditionStack[this.conditionStack.length - 1]) {
             return this.conditions[this.conditionStack[this.conditionStack.length - 1]].rules;
         } else {
@@ -587,7 +602,7 @@ _currentRules:function _currentRules () {
     },
 
 // return the currently active lexer condition state; when an index argument is provided it produces the N-th previous condition state, if available
-topState:function topState (n) {
+topState:function topState(n) {
         n = this.conditionStack.length - 1 - Math.abs(n || 0);
         if (n >= 0) {
             return this.conditionStack[n];
@@ -597,7 +612,7 @@ topState:function topState (n) {
     },
 
 // alias for begin(condition)
-pushState:function pushState (condition) {
+pushState:function pushState(condition) {
         this.begin(condition);
     },
 
@@ -611,42 +626,44 @@ var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
 case 0:/*skip*/
 break;
-case 1:return 20
+case 1:return 11
 break;
-case 2:return 21;
+case 2:return 25;
 break;
-case 3:return 19
+case 3:return 24
 break;
-case 4:return 12; 
+case 4:return 17; 
 break;
-case 5:return 13; 
+case 5:return 18; 
 break;
-case 6:return 16; 
+case 6:return 21; 
 break;
-case 7:return 17; 
+case 7:return 22; 
 break;
-case 8:return 14; 
+case 8:return 19; 
 break;
-case 9:return 15; 
+case 9:return 20; 
 break;
 case 10:return 8; 
 break;
 case 11:return 9;
 break;
-case 12:return 10;
+case 12:return 12;
 break;
-case 13:return 11;
+case 13:return 14;
 break;
-case 14:return 18;
+case 14:return 16;
 break;
-case 15:return 5;
+case 15:return 23;
 break;
-case 16:return 'INVALID';
+case 16:return 5;
+break;
+case 17:return 'INVALID';
 break;
 }
 },
-rules: [/^(?:\s+)/,/^(?:[A-Za-z][A-Za-z_0-9]*)/,/^(?:[0-9]+(\.[0-9]+)?\b)/,/^(?:"+[a-zA-Z_]+")/,/^(?:\+)/,/^(?:-)/,/^(?:>)/,/^(?:<)/,/^(?:\*)/,/^(?:\/)/,/^(?:\?)/,/^(?::)/,/^(?:\()/,/^(?:\))/,/^(?:==)/,/^(?:$)/,/^(?:.)/],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],"inclusive":true}}
+rules: [/^(?:\s+)/,/^(?:[A-Za-z][A-Za-z_0-9]*)/,/^(?:[0-9]+(\.[0-9]+)?\b)/,/^(?:"+[a-zA-Z_0-9]+")/,/^(?:\+)/,/^(?:-)/,/^(?:>)/,/^(?:<)/,/^(?:\*)/,/^(?:\/)/,/^(?:\?)/,/^(?::)/,/^(?:\()/,/^(?:\))/,/^(?:,)/,/^(?:==)/,/^(?:$)/,/^(?:.)/],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],"inclusive":true}}
 });
 return lexer;
 })();
@@ -663,7 +680,7 @@ if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
 exports.parser = three;
 exports.Parser = three.Parser;
 exports.parse = function () { return three.parse.apply(three, arguments); };
-exports.main = function commonjsMain (args) {
+exports.main = function commonjsMain(args) {
     if (!args[1]) {
         console.log('Usage: '+args[0]+' FILE');
         process.exit(1);
