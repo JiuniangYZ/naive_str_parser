@@ -4,7 +4,7 @@
 \s+         /*skip*/
 [A-Za-z][A-Za-z_0-9]*       return 'NAME'
 [0-9]+("."[0-9]+)?\b        return 'NUMBER';
-\"+[a-zA-Z_]+\"           return 'STRING'
+\"+[a-zA-Z_0-9]+\"           return 'STRING'
 "+"                         return '+'; 
 "-"                         return '-'; 
 ">"                         return '>'; 
